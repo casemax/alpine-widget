@@ -3248,7 +3248,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<div x-data=\"{open: false}\">\r\n    <button @click=\"open = !open\">Toggle</button>\r\n    <p x-show=\"open\">Now you see me</p>\r\n</div>";
+var code = "<div x-data=\"{open: false}\" style=\"position: relative; float: right; background-color: blue\">\r\n    <button @click=\"open = !open\">Toggle</button>\r\n    <p x-show=\"open\">Now you see me</p>\r\n</div>";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
