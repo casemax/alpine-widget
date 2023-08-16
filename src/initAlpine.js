@@ -9,11 +9,16 @@ const initAlpine = () => {
      *  Alpine.data('widget', widget); 
      */
 
-    Alpine.data('widget', widget)
+    
+
+    
+    // widget();
     window.Alpine = Alpine
-    Alpine.start();
+    
 
     document.getElementById("widget-div").innerHTML = widgetHTML;
+    Alpine.data('widget', widget)
+    Alpine.start();
 }
 
 export default initAlpine;

@@ -11,7 +11,8 @@ const injectCSS = () => {
     link.href = "https://cdn.jsdelivr.net/gh/joseph-farruggio/js-widget@1.0/dist/styles.css";
   } else {
     // Your local CSS for local development
-    link.href = "./src/widget-styles.css";
+    link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@025aaba8f2b1fb506216961be9e100b41e46b990/src/widget-styles.css";
+    // link.href = "./src/widget-styles.css";
     // link.href = "./../dist/styles.css";
   }
 

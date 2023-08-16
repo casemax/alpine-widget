@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/alpinejs/dist/module.esm.js":
@@ -7,7 +8,6 @@
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ module_default)
@@ -3158,7 +3158,6 @@ var module_default = src_default;
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -3166,7 +3165,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 /* harmony import */ var _widget_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widget.html */ "./widget.html");
 /* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./widget.js */ "./src/widget.js");
-/* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_widget_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
 
@@ -3177,10 +3175,11 @@ var initAlpine = function initAlpine() {
    *  Alpine.data('widget', widget); 
    */
 
-  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('widget', (_widget_js__WEBPACK_IMPORTED_MODULE_2___default()));
+  // widget();
   window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
-  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
   document.getElementById("widget-div").innerHTML = _widget_html__WEBPACK_IMPORTED_MODULE_1__["default"];
+  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('widget', _widget_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initAlpine);
 
@@ -3192,13 +3191,11 @@ var initAlpine = function initAlpine() {
   \**************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 var injectCSS = function injectCSS() {
-  // Create a <link> element
   var link = document.createElement("link");
 
   // Set the link type to and rel attributes
@@ -3206,7 +3203,8 @@ var injectCSS = function injectCSS() {
   link.rel = "stylesheet";
   if (false) {} else {
     // Your local CSS for local development
-    link.href = "./src/widget-styles.css";
+    link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@025aaba8f2b1fb506216961be9e100b41e46b990/src/widget-styles.css";
+    // link.href = "./src/widget-styles.css";
     // link.href = "./../dist/styles.css";
   }
 
@@ -3218,44 +3216,76 @@ var injectCSS = function injectCSS() {
 
 /***/ }),
 
+/***/ "./src/injectFonts.js":
+/*!****************************!*\
+  !*** ./src/injectFonts.js ***!
+  \****************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var injectFonts = function injectFonts() {
+  var fontList = ["https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0", "https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"];
+  fontList.forEach(function (flink) {
+    var link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = flink;
+    var head = document.head;
+    head.appendChild(link);
+  });
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (injectFonts);
+
+/***/ }),
+
 /***/ "./src/widget.js":
 /*!***********************!*\
   !*** ./src/widget.js ***!
   \***********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-var shellDiv = document.getElementById('widget-div');
-var innerDiv = shellDiv.firstChild;
-shellDiv.addEventListener('mousedown', function (e) {
-  return dragElement(e, shellDiv);
-});
-innerDiv.addEventListener('mousedown', function (e) {
-  return dragElement(e, shellDiv);
-});
-function dragElement(evt, el) {
-  var pos1 = 0,
-    pos2 = 0,
-    pos3 = 0,
-    pos4 = 0;
-  pos3 = evt.clientX;
-  pos4 = evt.clientY;
-  document.onmousemove = elementDrag;
-  document.onmouseup = closeDragElement;
-  function elementDrag(evt) {
-    evt.preventDefault();
-    pos1 = pos3 - evt.clientX;
-    pos2 = pos4 - evt.clientY;
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var widget = function widget() {
+  var shellDiv = document.getElementById('widget-div');
+  var innerDiv = shellDiv.firstChild;
+  shellDiv.addEventListener('mousedown', function (e) {
+    return dragElement(e, shellDiv);
+  });
+  innerDiv.addEventListener('mousedown', function (e) {
+    return dragElement(e, shellDiv);
+  });
+  function dragElement(evt, el) {
+    var pos1 = 0,
+      pos2 = 0,
+      pos3 = 0,
+      pos4 = 0;
     pos3 = evt.clientX;
     pos4 = evt.clientY;
-    el.style.top = el.offsetTop - pos2 + "px";
-    el.style.left = el.offsetLeft - pos1 + "px";
+    document.onmousemove = elementDrag;
+    document.onmouseup = closeDragElement;
+    function elementDrag(evt) {
+      evt.preventDefault();
+      pos1 = pos3 - evt.clientX;
+      pos2 = pos4 - evt.clientY;
+      pos3 = evt.clientX;
+      pos4 = evt.clientY;
+      el.style.top = el.offsetTop - pos2 + "px";
+      el.style.left = el.offsetLeft - pos1 + "px";
+    }
+    function closeDragElement(evt) {
+      document.onmouseup = null;
+      document.onmousemove = null;
+    }
+    evt.stopPropagation(); // Prevents call of both child and parent events
   }
-  function closeDragElement(evt) {
-    document.onmouseup = null;
-    document.onmousemove = null;
-  }
-  evt.stopPropagation(); // Prevents call of both child and parent events
-}
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (widget);
 
 /***/ }),
 
@@ -3265,7 +3295,6 @@ function dragElement(evt, el) {
   \*********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -3304,18 +3333,6 @@ var code = "<div class=\"card-header\">\r\n    <h2>Publishing Widget</h2>\r\n   
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports
@@ -3346,17 +3363,19 @@ var code = "<div class=\"card-header\">\r\n    <h2>Publishing Widget</h2>\r\n   
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!********************!*\
   !*** ./src/app.js ***!
   \********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _initAlpine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./initAlpine */ "./src/initAlpine.js");
 /* harmony import */ var _injectCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./injectCSS */ "./src/injectCSS.js");
+/* harmony import */ var _injectFonts__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./injectFonts */ "./src/injectFonts.js");
 
 
+
+(0,_injectFonts__WEBPACK_IMPORTED_MODULE_2__["default"])();
 (0,_injectCSS__WEBPACK_IMPORTED_MODULE_1__["default"])();
 (0,_initAlpine__WEBPACK_IMPORTED_MODULE_0__["default"])();
 })();
