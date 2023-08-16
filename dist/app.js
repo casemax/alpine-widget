@@ -3164,20 +3164,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
-/* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./widget.js */ "./src/widget.js");
-/* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_widget_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _widget_html__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../widget.html */ "./widget.html");
-// initAlpine.js
-// Import the Alpine JS framework
+/* harmony import */ var _widget_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widget.html */ "./widget.html");
+/* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./widget.js */ "./src/widget.js");
+/* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_widget_js__WEBPACK_IMPORTED_MODULE_2__);
 
 
-// If you abstracted your Alpine component logic, you'd import that here
 
-
-// import widget template
-
-
-// initAlpine.js continued
 var initAlpine = function initAlpine() {
   /**
    *  If you're abstracting your component logic into a JS file (imported above), 
@@ -3185,11 +3177,10 @@ var initAlpine = function initAlpine() {
    *  Alpine.data('widget', widget); 
    */
 
+  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('widget', (_widget_js__WEBPACK_IMPORTED_MODULE_2___default()));
   window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
   alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
-
-  // #app is a div that we're going to inject our markup into
-  document.getElementById("app").innerHTML = _widget_html__WEBPACK_IMPORTED_MODULE_2__["default"];
+  document.getElementById("widget-div").innerHTML = _widget_html__WEBPACK_IMPORTED_MODULE_1__["default"];
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (initAlpine);
 
@@ -3215,7 +3206,8 @@ var injectCSS = function injectCSS() {
   link.rel = "stylesheet";
   if (false) {} else {
     // Your local CSS for local development
-    link.href = "./../dist/styles.css";
+    link.href = "./src/widget-styles.css";
+    // link.href = "./../dist/styles.css";
   }
 
   // Append the stylesheet to the <head> of the DOM
@@ -3232,7 +3224,38 @@ var injectCSS = function injectCSS() {
   \***********************/
 /***/ (() => {
 
-
+var shellDiv = document.getElementById('widget-div');
+var innerDiv = shellDiv.firstChild;
+shellDiv.addEventListener('mousedown', function (e) {
+  return dragElement(e, shellDiv);
+});
+innerDiv.addEventListener('mousedown', function (e) {
+  return dragElement(e, shellDiv);
+});
+function dragElement(evt, el) {
+  var pos1 = 0,
+    pos2 = 0,
+    pos3 = 0,
+    pos4 = 0;
+  pos3 = evt.clientX;
+  pos4 = evt.clientY;
+  document.onmousemove = elementDrag;
+  document.onmouseup = closeDragElement;
+  function elementDrag(evt) {
+    evt.preventDefault();
+    pos1 = pos3 - evt.clientX;
+    pos2 = pos4 - evt.clientY;
+    pos3 = evt.clientX;
+    pos4 = evt.clientY;
+    el.style.top = el.offsetTop - pos2 + "px";
+    el.style.left = el.offsetLeft - pos1 + "px";
+  }
+  function closeDragElement(evt) {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+  evt.stopPropagation(); // Prevents call of both child and parent events
+}
 
 /***/ }),
 
@@ -3248,7 +3271,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<div x-data=\"{open: false}\" style=\"position: relative; float: right; background-color: blue\">\r\n    <button @click=\"open = !open\">Toggle</button>\r\n    <p x-show=\"open\">Now you see me</p>\r\n</div>";
+var code = "<div class=\"card-header\">\r\n    <h2>Publishing Widget</h2>\r\n    <div widget-min>\r\n        <span class=\"material-symbols-outlined\" @click=\"open = !open\">\r\n            close_fullscreen\r\n        </span>\r\n    </div>\r\n</div>\r\n\r\n<div x-show=\"open\">\r\n\r\n    <div class=\"card-body\">\r\n        <div>\r\n            <span class=\"material-symbols-rounded pub-status\">\r\n                do_not_disturb_on\r\n            </span>\r\n        </div>\r\n        <div>\r\n            <p class=\"peer-status\">Peer-Review Incomplete </p>\r\n            <p class=\"pub-date\">August 10, 2023</p>\r\n        </div>\r\n    </div>\r\n\r\n    <hr>\r\n\r\n    <div class=\"card-footer\">\r\n        <p>Review version history</p>\r\n    </div>\r\n\r\n    <div class=\"card-footer\">\r\n        <p id=\"peer-status\"></p>\r\n    </div>\r\n\r\n</div>";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
@@ -3332,7 +3355,6 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _initAlpine__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./initAlpine */ "./src/initAlpine.js");
 /* harmony import */ var _injectCSS__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./injectCSS */ "./src/injectCSS.js");
-// app.js
 
 
 (0,_injectCSS__WEBPACK_IMPORTED_MODULE_1__["default"])();
