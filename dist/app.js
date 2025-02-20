@@ -3164,9 +3164,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 /* harmony import */ var _widget_html__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../widget.html */ "./widget.html");
+/* harmony import */ var _widget_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./widget.js */ "./src/widget.js");
 
 
-// import widget from './widget.js'
+// import test from './test.js';
 
 var initAlpine = function initAlpine() {
   /**
@@ -3176,9 +3177,10 @@ var initAlpine = function initAlpine() {
    */
 
   window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
-  document.getElementById("widget-div").innerHTML = _widget_html__WEBPACK_IMPORTED_MODULE_1__["default"];
-  // Alpine.data('widget', widget)
+  alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].data('widget', _widget_js__WEBPACK_IMPORTED_MODULE_2__["default"]);
+  // Alpine.data('test', test)
   alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+  document.getElementById("widget-div").innerHTML = _widget_html__WEBPACK_IMPORTED_MODULE_1__["default"];
   // widget();
 };
 
@@ -3204,7 +3206,7 @@ var injectCSS = function injectCSS() {
   link.rel = "stylesheet";
   if (false) {} else {
     // Your local CSS for local development
-    link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@f0ba17b57d906c861d436d50ebc4db9172aee1c8/src/widget-styles.css";
+    link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@65e0dd023d42861e9a6415bafda5ef919cfc9a92/src/widget-styles.css";
     // link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@025aaba8f2b1fb506216961be9e100b41e46b990/src/widget-styles.css";
     // link.href = "./src/widget-styles.css";
     // link.href = "./../dist/styles.css";
@@ -3253,6 +3255,50 @@ var injectFonts = function injectFonts() {
 
 /***/ }),
 
+/***/ "./src/widget.js":
+/*!***********************!*\
+  !*** ./src/widget.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// const widget = () => {
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (function () {
+  return {
+    open: true,
+    dragElement: function dragElement(evt) {
+      var el = document.getElementById("widget-div");
+      var pos1 = 0,
+        pos2 = 0,
+        pos3 = 0,
+        pos4 = 0;
+      pos3 = evt.clientX;
+      pos4 = evt.clientY;
+      document.onmousemove = elementDrag;
+      document.onmouseup = closeDragElement;
+      function elementDrag(evt) {
+        evt.preventDefault();
+        pos1 = pos3 - evt.clientX;
+        pos2 = pos4 - evt.clientY;
+        pos3 = evt.clientX;
+        pos4 = evt.clientY;
+        el.style.top = el.offsetTop - pos2 + "px";
+        el.style.left = el.offsetLeft - pos1 + "px";
+      }
+      function closeDragElement(evt) {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+      evt.stopPropagation(); // Prevents call of both child and parent events
+    }
+  };
+});
+
+/***/ }),
+
 /***/ "./widget.html":
 /*!*********************!*\
   !*** ./widget.html ***!
@@ -3264,7 +3310,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 // Module
-var code = "<div class=\"card-header\">\r\n    <h2>Publishing Widget</h2>\r\n    <div widget-min>\r\n        <span class=\"material-symbols-outlined\" @click=\"open = !open\">\r\n            close_fullscreen\r\n        </span>\r\n    </div>\r\n</div>\r\n\r\n<div x-show=\"open\">\r\n\r\n    <div class=\"card-body\">\r\n        <div>\r\n            <span class=\"material-symbols-rounded pub-status\">\r\n                do_not_disturb_on\r\n            </span>\r\n        </div>\r\n        <div>\r\n            <p class=\"peer-status\">Peer-Review Incomplete </p>\r\n            <p class=\"pub-date\">August 10, 2023</p>\r\n        </div>\r\n    </div>\r\n\r\n    <hr>\r\n\r\n    <div class=\"card-footer\">\r\n        <p>Review version history</p>\r\n    </div>\r\n\r\n    <div class=\"card-footer\">\r\n        <p id=\"peer-status\"></p>\r\n    </div>\r\n\r\n</div>\r\n\r\n<" + "script>\r\n\r\nconst shellDiv = document.getElementById('widget-div');\r\n    const innerDiv = shellDiv.firstChild;\r\n\r\n    shellDiv.addEventListener('mousedown', (e) => dragElement(e, shellDiv))\r\n    innerDiv.addEventListener('mousedown', (e) => dragElement(e, shellDiv))\r\n\r\n    function dragElement(evt, el) {\r\n        \r\n        var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;\r\n\r\n        pos3 = evt.clientX;\r\n        pos4 = evt.clientY;\r\n        document.onmousemove = elementDrag;\r\n        document.onmouseup = closeDragElement;\r\n\r\n        function elementDrag(evt) {\r\n            evt.preventDefault();\r\n\r\n            pos1 = pos3 - evt.clientX;\r\n            pos2 = pos4 - evt.clientY;\r\n            pos3 = evt.clientX;\r\n            pos4 = evt.clientY;\r\n\r\n            el.style.top = (el.offsetTop - pos2) + \"px\";\r\n            el.style.left = (el.offsetLeft - pos1) + \"px\";\r\n        }\r\n\r\n        function closeDragElement(evt) {\r\n            document.onmouseup = null;\r\n            document.onmousemove = null;\r\n        }\r\n\r\n        evt.stopPropagation();      // Prevents call of both child and parent events\r\n\r\n    }\r\n\r\n<" + "/script>";
+var code = "<!-- <div class=\"card-header\" @mousedown=\"dragElement($event)\"> -->\r\n<div class=\"card-header\">\r\n    <h2>Publishing Widget</h2>\r\n    <div widget-min>\r\n        <span class=\"material-symbols-outlined\" @click=\"open = !open\">\r\n            close_fullscreen\r\n        </span>\r\n    </div>\r\n</div>\r\n\r\n<div x-show=\"open\" x-transition>\r\n\r\n    <div class=\"card-body\">\r\n        <div>\r\n            <span class=\"material-symbols-rounded pub-status\">\r\n                do_not_disturb_on\r\n            </span>\r\n        </div>\r\n        <div>\r\n            <p class=\"peer-status\">Peer-Review Incomplete </p>\r\n            <p class=\"pub-date\">August 10, 2023</p>\r\n        </div>\r\n    </div>\r\n\r\n    <hr>\r\n\r\n    <div class=\"card-footer\">\r\n        <p>Review version history</p>\r\n    </div>\r\n\r\n    <div class=\"card-footer\">\r\n        <p id=\"peer-status\"></p>\r\n    </div>\r\n\r\n</div>";
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 

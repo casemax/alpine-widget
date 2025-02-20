@@ -1,6 +1,7 @@
 import Alpine from 'alpinejs'
 import widgetHTML from '../widget.html';
-// import widget from './widget.js'
+// import test from './test.js';
+import widget from './widget.js'
 
 const initAlpine = () => {
     /**
@@ -9,10 +10,12 @@ const initAlpine = () => {
      *  Alpine.data('widget', widget); 
      */
 
+
     window.Alpine = Alpine
-    document.getElementById("widget-div").innerHTML = widgetHTML;
-    // Alpine.data('widget', widget)
+    Alpine.data('widget', widget)
+    // Alpine.data('test', test)
     Alpine.start();
+    document.getElementById("widget-div").innerHTML = widgetHTML;
     // widget();
 }
 

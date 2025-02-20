@@ -11,7 +11,7 @@ const injectCSS = () => {
     link.href = "https://cdn.jsdelivr.net/gh/joseph-farruggio/js-widget@1.0/dist/styles.css";
   } else {
     // Your local CSS for local development
-    link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@f0ba17b57d906c861d436d50ebc4db9172aee1c8/src/widget-styles.css";
+    link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@65e0dd023d42861e9a6415bafda5ef919cfc9a92/src/widget-styles.css";
     // link.href = "https://cdn.jsdelivr.net/gh/casemax/alpine-widget@025aaba8f2b1fb506216961be9e100b41e46b990/src/widget-styles.css";
     // link.href = "./src/widget-styles.css";
     // link.href = "./../dist/styles.css";
